@@ -1,0 +1,1 @@
+//Dans ce fichier je vais faire appel a tout les fonction et faire toutes les operation de calcul possioble
