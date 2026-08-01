@@ -3,7 +3,6 @@
 
 #ifndef RENDEZVOUS_H
 #define RENDEZVOUS_H
-#define MAX_RDV[100];
 
 //Strucure de la date
 typedef struct{
@@ -22,7 +21,7 @@ typedef struct{
 //Strucutre d'un rendevous
 typedef struct{
     int idPatient;
-    Date date;
+    Date dat;
     Temp heur;
 }Rendezvous;
 
