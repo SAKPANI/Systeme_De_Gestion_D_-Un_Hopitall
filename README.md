@@ -1,2 +1,2 @@
 # SYSTEME DE GESTION D'UN HOPITAL
-### Programme en console qui permet de gerer un hopital
+### Programme C en console qui permet de gerer un hopital
