@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include "patient.h"
+#include "consultation.h"
 #include "menu.h"
 
 int main(){
     int choix;
     Patient p;
     Data *tete =  NULL ;
+    Consultation c;
+    Consulter *ABR = NULL;
 
     do{
         Menu();
@@ -24,16 +27,19 @@ int main(){
                 break;
             
             case 3:
-                tete =SupprimerPatient(tete);
+                tete = SupprimerPatient(tete);
                 break;
-              
             case 4:
                 Recherche(tete);
                 break;
+
+            case 5:
+                SaisirConsultation(tete,&c);
+                //ABR = AjouterConsultation(ABR, c);
+                break;
             
-
-
             case 0:
+                LibererData(tete);
                 printf("Fin du programme.\n");
                 break;
 

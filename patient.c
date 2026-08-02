@@ -118,6 +118,14 @@ void Recherche(Data *tete){
 
     int idRecherche;
 
+    printf("\n\n***************************************\n");
+    printf("\tRECHERCHE D'UN PATIENT A PARTIR DE SON ID\n");
+    printf("*******************************************\n");
+
+    if(tete == NULL){
+        printf("\n\nAucun patient enregistrer !! Liste vide\n\n");
+    }
+
     printf("Identifiant du patient : ");
     scanf("%d", &idRecherche);
 
@@ -151,29 +159,45 @@ void Recherche(Data *tete){
 
 //Suppression des infos d'un patient
 Data *SupprimerPatient(Data *tete){
-    Data * temp;
-    Data p;
+    int id;
+    Data *temp;
+    printf("\n\n----------------------------------\n");
+    printf("\tSUPPRESSION DES DONNES [D'UN PATIENT]\n");
+    printf("---------------------------------------\n");
+
     if(tete == NULL){
-        printf("Aucun element a supprimer !!");
-        return NULL ;
+        printf("\nAucun element a supprimer !!\n");
     }
+
     else{
         printf("Entrer l' ID du patient a supprimer :");
-        scanf("%d", &p.donne.id);
+        scanf("%d", &id);
 
         while(tete !=NULL){
-            if(tete->donne.id = p.donne.id){
+            if(tete->donne.id == id){
                 temp=tete;
+                tete= tete->suivant;
                 free(temp);
                 printf("Patient supprimer avec succes !!\n");
+                return tete;
+            }
+            else{
+                printf("L'ID : %d n'exist pas dans la liste des patient !\n", id);
             }
             tete = tete->suivant;
         }
-        printf("L'ID : %d n'exist pas dans la liste des patient !\n", p.donne.id);
-        
+      
     }
-    return tete;
+    return NULL;
+}
 
+void LibererData(Data *tete){
+    Data *temp;
+    while(tete !=NULL){
+        temp = tete;
+        tete=tete->suivant;
+        free(temp);
+    }
 }
 
 

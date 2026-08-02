@@ -37,7 +37,7 @@ void Recherche(Data *tete);
 Data *SupprimerPatient(Data *tete);
 
 // //Fin du programme liberation de maloc
-Data *LibererData(Data *tete);
+void LibererData(Data *tete);
 
 
 # endif
