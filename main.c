@@ -35,10 +35,15 @@ int main(){
 
             case 5:
                 SaisirConsultation(tete,&c);
-                //ABR = AjouterConsultation(ABR, c);
+                ABR = AjouterConsultation(ABR, c);
+
+                printf("\nNOM : %s\n", ABR->donne.diagnostic);
+                break;
+            case 6:
+                ABR=RechercherConsultation(tete, ABR, c);
                 break;
             
-            case 0:
+            case 0: 
                 LibererData(tete);
                 printf("Fin du programme.\n");
                 break;

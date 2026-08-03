@@ -27,9 +27,10 @@ Consulter *CreerConsultation(Consultation c){
     return nouveau;
 }
 
+
+//Fonction de saisie des des donnes des consultations
 void SaisirConsultation (Data *tete,Consultation *c){
     int id;
-
     if(tete == NULL){
         printf("\n\nAucun patient enregistrer !!\n");
     }
@@ -45,7 +46,7 @@ void SaisirConsultation (Data *tete,Consultation *c){
         while(tete != NULL){
             if(tete->donne.id == id){
                 printf("\nNumero de la consultation du patient :");
-                scanf("%d", c->numero);
+                scanf("%d", &c->numero);
                 printf("------|\n");
                 printf("\tDATE\n ");
                 printf("-------\n");
@@ -60,6 +61,8 @@ void SaisirConsultation (Data *tete,Consultation *c){
                 printf("Traitement :");
                 scanf("%99s", c->traitement);
 
+                printf("\nConsultation Ajouter avec succees\n");
+
                 break;
             }
             tete=tete->suivant;
@@ -68,4 +71,53 @@ void SaisirConsultation (Data *tete,Consultation *c){
     }
 }
 
+
+//Ajout d'une consultation dans l'ABR
+Consulter *AjouterConsultation(Consulter *racine, Consultation c){
+    if(racine == NULL){
+        return CreerConsultation(c);
+    }
+    else{
+        if(c.numero < racine->donne.numero){
+            racine->gauche = AjouterConsultation(racine->gauche, c);
+        }
+        else if(c.numero > racine->donne.numero){
+            racine->droit = AjouterConsultation(racine->droit, c);
+        }
+    }
+    return racine;
+}
+
+//Recherche d'une consultation a partir de son numero
+
+Consulter *RechercherConsultation(Data *tete, Consulter *racine, Consultation c){
+    if(tete == NULL){
+        printf("\nAucune consultation enregitre !!\n");
+    }
+    else{
+        if(racine == NULL){
+            return NULL;
+        }
+        printf("\nEntrer le numero de consultation:");
+        scanf("%d", &c.numero);
+        while(tete != NULL){
+            if(racine->donne.numero == c.numero){
+                return racine;
+            }
+            else if(c.numero < racine->donne.numero){
+                return RechercherConsultation(tete, racine->gauche, c);
+            }
+            else if(c.numero > racine->donne.numero){
+                return  RechercherConsultation(tete, racine->droit, c);
+            }
+            else{
+                printf("\nAucune consultation avec le numero %d\n : ",racine->donne.numero);
+            }
+            tete = tete->suivant;
+        }
+
+    }
+    return NULL;
+}
+   
 

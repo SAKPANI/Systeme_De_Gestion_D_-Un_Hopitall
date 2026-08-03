@@ -34,15 +34,15 @@ Consulter *CreerConsultation(Consultation c);
 
 //Ajouter une consultation 
 void SaisirConsultation(Data *tete, Consultation *c);
-Consulter *AjouterConsultation(Consulter *racineC, Consultation c);
+Consulter *AjouterConsultation(Consulter *racine, Consultation c);
 //Rechercher en connaissant le numero de consultation
-Consulter *RechercherConsultation(Consulter *racineC, Consultation c);
+Consulter *RechercherConsultation(Data *tete, Consulter *racine, Consultation c);
 
 //Supprimer a partir d'un numero
-Consulter *SupprimerConsultation(Consulter *racineC, Consultation c);
+Consulter *SupprimerConsultation(Consulter *racine, Consultation c);
 
 //Par cour de la consultation en trie en fonction de la data
-void AfficherConsultTrie(Consulter *racineC);
+void AfficherConsultTrie(Consulter *racine);
 
-void LibererABR(Consulter *racineC);
+void LibererABR(Consulter *racine);
 #endif
