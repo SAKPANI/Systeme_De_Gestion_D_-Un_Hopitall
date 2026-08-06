@@ -36,7 +36,7 @@ Consulter *CreerConsultation(Consultation c);
 void SaisirConsultation(Data *tete, Consultation *c);
 Consulter *AjouterConsultation(Consulter *racine, Consultation c);
 //Rechercher en connaissant le numero de consultation
-Consulter *RechercherConsultation(Data *tete, Consulter *racine, Consultation c);
+Consulter *RechercherConsultation(Consulter *racine, Consultation c);
 
 //Supprimer a partir d'un numero
 Consulter *SupprimerConsultation(Consulter *racine, Consultation c);

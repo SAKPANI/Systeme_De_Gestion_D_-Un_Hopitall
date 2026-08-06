@@ -40,11 +40,20 @@ int main(){
                 printf("\nNOM : %s\n", ABR->donne.diagnostic);
                 break;
             case 6:
-                ABR=RechercherConsultation(tete, ABR, c);
+                ABR=SupprimerConsultation(ABR, c);
                 break;
+
+            case 7:
+                ABR= RechercherConsultation(ABR, c);
+                printf("Trouver :%s", ABR->donne.diagnostic);
+            
+            case 8:
+                AfficherConsultTrie(ABR);
             
             case 0: 
                 LibererData(tete);
+                LibererABR(ABR);
+                printf("\n\nLiberation des donnees \n");
                 printf("Fin du programme.\n");
                 break;
 

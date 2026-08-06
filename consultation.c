@@ -88,36 +88,105 @@ Consulter *AjouterConsultation(Consulter *racine, Consultation c){
     return racine;
 }
 
-//Recherche d'une consultation a partir de son numero
 
-Consulter *RechercherConsultation(Data *tete, Consulter *racine, Consultation c){
-    if(tete == NULL){
-        printf("\nAucune consultation enregitre !!\n");
+//Recherche d'une consultation a partir de son numero
+Consulter *RechercherConsultation(Consulter *racine, Consultation c){
+    if(racine == NULL){
+        printf("Arbre vide");
+        return NULL;
     }
     else{
-        if(racine == NULL){
-            return NULL;
+        if(c.numero == racine->donne.numero){
+            return racine;
         }
-        printf("\nEntrer le numero de consultation:");
-        scanf("%d", &c.numero);
-        while(tete != NULL){
-            if(racine->donne.numero == c.numero){
-                return racine;
-            }
-            else if(c.numero < racine->donne.numero){
-                return RechercherConsultation(tete, racine->gauche, c);
-            }
-            else if(c.numero > racine->donne.numero){
-                return  RechercherConsultation(tete, racine->droit, c);
-            }
-            else{
-                printf("\nAucune consultation avec le numero %d\n : ",racine->donne.numero);
-            }
-            tete = tete->suivant;
+        else if(c.numero <racine->donne.numero){
+            return RechercherConsultation(racine->gauche, c);
         }
+        else{
+            return RechercherConsultation(racine->droit, c);
+        }
+    }
+}
+
+
+//Recherche d'un minimum dans un AB
+Consulter *minimumABR(Consulter *racine){
+    if(racine ==NULL && racine->gauche == NULL){
+        return racine;
+    }
+    else{
+        if(racine->gauche !=NULL){
+            return minimumABR(racine->gauche);
+        }
+    }
+}
+
+
+//Suppression d'un ABR
+Consulter *SupprimerConsultation(Consulter *racine, Consultation c){
+    if(racine == NULL){
+        return NULL;
+    }
+    else{
+        printf("\nEntrer le numero de la consultation du psatient :");
+        scanf("%d", c.numero);
+        if(c.numero == racine->donne.numero){
+            return racine;
+        }
+        else if(c.numero <racine->donne.numero){
+            return SupprimerConsultation(racine->gauche, c);
+        }
+        else if(c.numero > racine->donne.numero){
+            return SupprimerConsultation(racine->droit, c);
+        }
+        else{
+            if(racine->gauche == NULL && racine->droit == NULL){
+                free(racine);
+                return NULL;
+            }
+            else if(racine->gauche == NULL && racine->droit !=NULL){
+                Consulter *temp =racine->droit;
+                free(racine);
+                return temp;
+            }
+            else if(racine->gauche != NULL && racine->droit ==NULL){
+                Consulter *temp =racine->gauche;
+                free(racine);
+                return temp;
+            }
+            else if(racine->gauche != NULL && racine->droit !=NULL){
+                Consulter *Succ = minimumABR(racine->droit);
+                racine->donne = Succ->donne;
+                return SupprimerConsultation(racine->droit, Succ->donne);
+            }
+        }
+    }
+    return racine;
+}
+
+
+//Parcours infixe 
+void AfficherConsultTrie(Consulter *racine){
+    if(racine !=NULL){
+        AfficherConsultTrie(racine->gauche);
+        printf("%d\n%d/%d/%d\n%s\n%s",racine->donne.numero,
+        racine->donne.date.jour,
+        racine->donne.date.mois,
+        racine->donne.date.annee,
+        racine->donne.diagnostic,
+        racine->donne.traitement
+    );
 
     }
-    return NULL;
 }
-   
 
+//Liberation de malloc
+
+void LibererABR(Consulter *racine){
+    if(racine !=NULL){
+        LibererABR(racine->gauche);
+        LibererABR(racine->droit);
+        free(racine);
+
+    }
+}

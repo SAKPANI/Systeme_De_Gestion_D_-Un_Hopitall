@@ -82,7 +82,7 @@ Data *ModifierInfoPatient(Data *tete){
                 courant->donne.nom,
                 courant->donne.prenom
             );
-            printf("=========================================================================\n\n"); 
+            printf("=========================================================================\n\n");
             printf("VEULLIEZ SAISIR LES MODIFICATION SUR LE PATIENT TROUVE|\n");
             printf("------------------------------------------------\n\n");
             printf("Identifiant : ");
@@ -105,12 +105,9 @@ Data *ModifierInfoPatient(Data *tete){
 
             return tete;
         }
-
         courant= courant->suivant;
-        
     }
-    printf("l'indentifant :%d n'existe pas dans la liste des patient enregistrer", courant->donne.id);
-
+    //printf("l'indentifant :%d n'existe pas dans la liste des patient enregistrer", courant->donne.id);
 }
 // =============================
 // Rechercher un patient
@@ -186,7 +183,7 @@ Data *SupprimerPatient(Data *tete){
             }
             tete = tete->suivant;
         }
-      
+
     }
     return NULL;
 }
